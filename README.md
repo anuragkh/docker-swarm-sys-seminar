@@ -58,7 +58,9 @@ DOCKER_HOST=$(docker-machine ip manager):3376
 docker info
 ```
 
-The first line instructs your docker cli to connect to the swarm manager.
+The first line instructs your docker cli to connect to the swarm manager, and the second prints out the swarm information.
+
+** Note: There might be some period of time for which `docker info` shows 0 nodes running; don't worry. Wait for some time and retry since it takes some time for the swarm manager to register the swarm agents.**
 
 ## Run a simple container
 
@@ -68,33 +70,42 @@ You can run a simple dummy container with the
 1. Print information about your swarm:
 
 ```
-Containers: 2
- Running: 2
+Containers: 3
+ Running: 3
  Paused: 0
  Stopped: 0
-Images: 2
+Images: 3
 Server Version: swarm/1.2.3
 Role: primary
 Strategy: spread
 Filters: health, port, containerslots, dependency, affinity, constraint
-Nodes: 2
+Nodes: 3
  agent1: 192.168.99.101:2376
-  └ ID: G4UC:OY7T:TOMG:D5BN:6RS6:IFMX:FLAM:WYYA:UNSG:KKJG:36CO:CRBG
+  └ ID: OZKP:FR6W:THMU:MTAR:7Z2N:BOYZ:BD7O:I4WO:E7KF:D6IE:UXW7:CKO7
   └ Status: Healthy
   └ Containers: 1
   └ Reserved CPUs: 0 / 1
   └ Reserved Memory: 0 B / 1.021 GiB
   └ Labels: executiondriver=, kernelversion=4.4.13-boot2docker, operatingsystem=Boot2Docker 1.12.0-rc2 (TCL 7.1); HEAD : 52952ef - Fri Jun 17 21:01:09 UTC 2016, provider=virtualbox, storagedriver=aufs
-  └ UpdatedAt: 2016-06-20T21:11:27Z
+  └ UpdatedAt: 2016-06-24T18:20:47Z
   └ ServerVersion: 1.12.0-rc2
  agent2: 192.168.99.102:2376
-  └ ID: VUVC:4IOJ:LXZG:DO7I:XFHS:V37H:CGHX:VOJZ:XNBW:H26T:KKU2:XQDH
+  └ ID: JZ2K:LH2K:KPLI:GN6E:C2NB:TMPS:5QOB:UYHA:7NO6:VBOP:HVUD:DL2J
   └ Status: Healthy
   └ Containers: 1
   └ Reserved CPUs: 0 / 1
   └ Reserved Memory: 0 B / 1.021 GiB
   └ Labels: executiondriver=, kernelversion=4.4.13-boot2docker, operatingsystem=Boot2Docker 1.12.0-rc2 (TCL 7.1); HEAD : 52952ef - Fri Jun 17 21:01:09 UTC 2016, provider=virtualbox, storagedriver=aufs
-  └ UpdatedAt: 2016-06-20T21:11:24Z
+  └ UpdatedAt: 2016-06-24T18:21:05Z
+  └ ServerVersion: 1.12.0-rc2
+ agent3: 192.168.99.103:2376
+  └ ID: OA3Q:Z6Y4:J2O2:ON33:SAXS:ZWKZ:6CH5:HBTW:3XZI:SQEY:XR5A:BAHV
+  └ Status: Healthy
+  └ Containers: 1
+  └ Reserved CPUs: 0 / 1
+  └ Reserved Memory: 0 B / 1.021 GiB
+  └ Labels: executiondriver=, kernelversion=4.4.13-boot2docker, operatingsystem=Boot2Docker 1.12.0-rc2 (TCL 7.1); HEAD : 52952ef - Fri Jun 17 21:01:09 UTC 2016, provider=virtualbox, storagedriver=aufs
+  └ UpdatedAt: 2016-06-24T18:20:46Z
   └ ServerVersion: 1.12.0-rc2
 Plugins:
  Volume:
@@ -106,16 +117,16 @@ Security Options:
 Kernel Version: 4.4.13-boot2docker
 Operating System: linux
 Architecture: amd64
-CPUs: 2
-Total Memory: 2.042 GiB
-Name: a816a928d365
+CPUs: 3
+Total Memory: 3.063 GiB
+Name: 09f58374a52a
 Docker Root Dir:
 Debug Mode (client): false
 Debug Mode (server): false
 WARNING: No kernel memory limit support
 ```
 
-2. Run a dummy "hello world" container on your swarm:
+2. Run a dummy "hello-world" container on your swarm:
 
 ```
 Hello from Docker.
@@ -148,7 +159,3 @@ f94f855affd4        swarm               "/swarm join --addr=1"   8 minutes ago  
 f94f855affd4        swarm               "/swarm join --addr=1"   8 minutes ago            Up 8 minutes                        2375/tcp            agent2/boring_northcutt
 348e7a0a17a4        swarm               "/swarm join --addr=1"   8 minutes ago            Up 8 minutes                        2375/tcp            agent1/cranky_keller
 ```
-
-## Running the Demo
-
-
