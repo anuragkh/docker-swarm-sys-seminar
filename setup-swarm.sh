@@ -19,6 +19,6 @@ docker run -d swarm join --addr=$(docker-machine ip agent2):2376\
   token://$cluster_id
 
 # Node 3
-eval $(docker-machine env agent2)
+eval $(docker-machine env agent3)
 docker run -d swarm join --addr=$(docker-machine ip agent3):2376\
   token://$cluster_id

@@ -144,6 +144,7 @@ For more examples and ideas, visit:
 ```
 CONTAINER ID        IMAGE               COMMAND                  CREATED                  STATUS                              PORTS               NAMES
 a1210cea4120        hello-world         "/hello"                 Less than a second ago   Exited (0) Less than a second ago                       agent1/nostalgic_darwin
+f94f855affd4        swarm               "/swarm join --addr=1"   8 minutes ago            Up 8 minutes                        2375/tcp            agent3/elated_jones
 f94f855affd4        swarm               "/swarm join --addr=1"   8 minutes ago            Up 8 minutes                        2375/tcp            agent2/boring_northcutt
 348e7a0a17a4        swarm               "/swarm join --addr=1"   8 minutes ago            Up 8 minutes                        2375/tcp            agent1/cranky_keller
 ```
