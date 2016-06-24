@@ -23,6 +23,26 @@ on a shell to make sure the installation was successful.
 Download and install the latest version of VirtualBox from
 [here](https://www.virtualbox.org/wiki/Downloads).
 
+## Create VMs
+
+The script at [setup-vms.sh](setup-vms.sh) creates 4 VMs for the demo. You need
+the latest version of VirtualBox for this.
+
+**Note: This script will take some time to run, and requires internet 
+connectivity since it downloads a (~38MB) VM image and creates three VMs from
+the image.**
+
+Once the VMs are created, you can check if the docker machines are running:
+
+```bash
+$ docker-machine ls
+NAME      ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER        ERRORS
+agent1    -        virtualbox   Running   tcp://192.168.99.101:2376           v1.12.0-rc2
+agent2    -        virtualbox   Running   tcp://192.168.99.102:2376           v1.12.0-rc2
+agent3    -        virtualbox   Running   tcp://192.168.99.102:2376           v1.12.0-rc2
+manager   -        virtualbox   Running   tcp://192.168.99.100:2376           v1.12.0-rc2
+```
+
 ## Setup a Docker Swarm
 
 The script at [setup-swarm.sh](setup-swarm.sh) should setup a Docker Swarm for
@@ -30,21 +50,19 @@ you; it follows the instructions provided
 [here](https://docs.docker.com/swarm/install-w-machine/) to setup a sandbox
 environment for trying out Docker Swarm.
 
-**Note: This script will take some time to run, and requires internet 
-connectivity since it downloads a (~38MB) VM image and creates three VMs from
-the image.**
-
-Once the setup is complete, you can check if the docker machines are running:
+You can print out information about your swarm by running
 
 ```bash
-$ docker-machine ls
-NAME      ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER        ERRORS
-agent1    -        virtualbox   Running   tcp://192.168.99.101:2376           v1.12.0-rc2
-agent2    -        virtualbox   Running   tcp://192.168.99.102:2376           v1.12.0-rc2
-manager   -        virtualbox   Running   tcp://192.168.99.100:2376           v1.12.0-rc2
+DOCKER_HOST=$(docker-machine ip manager):3376
+
+docker info
 ```
 
-you can also run a simple dummy container with the 
+The first line instructs your docker cli to connect to the swarm manager.
+
+## Run a simple container
+
+You can run a simple dummy container with the 
 [swarm-helloworld.sh](swarm-helloworld.sh) script. This should do the following:
 
 1. Print information about your swarm:
