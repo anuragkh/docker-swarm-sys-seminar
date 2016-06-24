@@ -67,7 +67,7 @@ The first line instructs your docker cli to connect to the swarm manager, and th
 You can run a simple dummy container with the 
 [swarm-helloworld.sh](swarm-helloworld.sh) script. This should do the following:
 
-1. Print information about your swarm:
+* Print information about your swarm:
 
 ```
 Containers: 3
@@ -126,7 +126,7 @@ Debug Mode (server): false
 WARNING: No kernel memory limit support
 ```
 
-2. Run a dummy "hello-world" container on your swarm:
+* Run a dummy "hello-world" container on your swarm:
 
 ```
 Hello from Docker.
@@ -150,7 +150,7 @@ For more examples and ideas, visit:
  https://docs.docker.com/engine/userguide/
 ```
 
-3. List out which container the "hello world" container ran on:
+* List out which container the "hello world" container ran on:
 
 ```
 CONTAINER ID        IMAGE               COMMAND                  CREATED                  STATUS                              PORTS               NAMES
